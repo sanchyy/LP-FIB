@@ -2,12 +2,12 @@ myFoldl :: (a -> b -> a) -> a -> [b] -> a
 myFoldl f n []      = n
 myFoldl f n (x:xs)  = myFoldl (f n x) xs
 
--- myFoldr :: (a -> b -> b) -> b -> [a] -> b
--- myFoldr f _ []  = 
--- myFoldr f n [x] = 
+myFoldr :: (a -> b -> b) -> b -> [a] -> b
+myFoldr f n []  = 
+myFoldr f n [x] = 
 
--- myIterate :: (a -> a) -> a -> [a]
-
+myIterate :: (a -> a) -> a -> [a]
+myIterate f n = [n] ++ myIterate f (f n) 
 
 -- myUntil :: (a -> Bool) -> (a -> a) -> a -> a
 
