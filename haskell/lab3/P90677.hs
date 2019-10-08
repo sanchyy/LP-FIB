@@ -2,17 +2,21 @@ myFoldl :: (a -> b -> a) -> a -> [b] -> a
 myFoldl f n []          = n
 myFoldl f n (x:xs)      = myFoldl f (f n x) xs
 
-myIterate :: (a -> a) -> a -> [a]
-myIterate f n           = [n] ++ myIterate f (f n) 
+myFoldr :: (a -> b -> b) -> b -> [a] -> b
+myFoldr f n []          = n
+myFoldr f n (x:xs)      = f x (myFoldr n xs)
 
--- myUntil :: (a -> Bool) -> (a -> a) -> a -> a
+myIterate :: (a -> a) -> a -> [a]
+myIterate f n           = n : myIterate f (f n) 
+
+myUntil :: (a -> Bool) -> (a -> a) -> a -> a
+myUntil f g x
 
 myMap :: (a -> b) -> [a] -> [b]
 myMap f xs              = [f x | x <- xs]
 
 -- myMap f []           = []
 -- myMap f (x:xs)       = [(f x)] ++  myMap f xs
-
 
 myFilter :: (a -> Bool) -> [a] -> [a]
 myFilter f xs           = [x | x <- xs, f x]
