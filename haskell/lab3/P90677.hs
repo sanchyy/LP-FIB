@@ -4,13 +4,15 @@ myFoldl f n (x:xs)      = myFoldl f (f n x) xs
 
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
 myFoldr f n []          = n
-myFoldr f n (x:xs)      = f x (myFoldr n xs)
+myFoldr f n (x:xs)      = f x (myFoldr f n xs)
 
 myIterate :: (a -> a) -> a -> [a]
 myIterate f n           = n : myIterate f (f n) 
 
 myUntil :: (a -> Bool) -> (a -> a) -> a -> a
-myUntil f g x
+myUntil b f x
+  | b x                 = x
+  | otherwise           = myUntil b f (f x) 
 
 myMap :: (a -> b) -> [a] -> [b]
 myMap f xs              = [f x | x <- xs]
@@ -27,18 +29,18 @@ myFilter f xs           = [x | x <- xs, f x]
 --  | otherwise         = myFilter f xs
 
 
--- myAll :: (a -> Bool) -> [a] -> Bool
--- myAll f xs           =    
+myAll :: (a -> Bool) -> [a] -> Bool
+myAll f x               = and $ myMap f x 
 
 
--- myAny :: (a -> Bool) -> [a] -> Bool
+myAny :: (a -> Bool) -> [a] -> Bool
+myAny f x               = or $ myMap f x
 
 myZip :: [a] -> [b] -> [(a, b)]
-myZip xs ys             = [(x,y) | x <- xs, y <- ys]
 
--- myZip [] _           = []
--- myZip _ []           = []
--- myZip (x:xs) (y:ys)  = [(x,y)] ++ myZip xs ys
+myZip [] _           = []
+myZip _ []           = []
+myZip (x:xs) (y:ys)  = [(x,y)] ++ myZip xs ys
 
 myZipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 myZipWith f xs ys = [f x y | (x,y) <- zip xs ys]
