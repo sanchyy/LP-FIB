@@ -31,13 +31,28 @@ instance Functor (Queue)
 translation :: Num b => b -> Queue b -> Queue b
 translation t                           = fmap (+t) 
 
+-- (<*>) :: f (a -> b) -> (f a -> f b)
+instance Applicative Queue
+    where
+        (Queue [x] []) <*> q            = (Queue [] [x]) <*> q
+        (Queue [] [x]) <*> q            = (Queue [x] []) <*> q
+        pure x                          = (Queue [x] [])
+
 merge :: Queue a -> Queue a -> Queue a
 merge (Queue x1 y1) (Queue x2 y2)       = Queue (x1 ++ reverse y1) (x2 ++ reverse y2)
 
 
+-- return :: a -> m a
 -- (>>=)  :: m a -> (a -> m b) -> m b
+-- (>>)   :: m a -> m b -> m b
 instance Monad Queue 
     where
         return x                        = Queue [x] []
-        (Queue x y) >>= f               = 
+        (Queue x y) >>= f               = foldl merge create (map f (x ++ (reverse y)))  
+
+kfilter :: (p -> Bool) -> Queue p -> Queue p
+kfilter f q = do
+    v <- q
+    if f v then return v else create
+
 
