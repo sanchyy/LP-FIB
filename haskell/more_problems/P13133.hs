@@ -1,15 +1,11 @@
 sumMultiples35 :: Integer -> Integer
-sumMultiples35 n                = sum [x | x <- [1..(n-1)], (mod x 3 == 0 || mod x 5 == 0)]
+sumMultiples35 n = sumMultiples n 3 + sumMultiples n 5 - sumMultiples n 15
+    where
+        sumMultiples :: Integer -> Integer -> Integer
+        sumMultiples n x = x * (div (n-1) x) * ((div (n-1) x)+1) `div` 2
 
 fibonacci :: Int -> Integer
-fibonacci 1                             = 1
-fibonacci 2                             = 1
-fibonacci n                             = fibonacci' 3 (1,1) 
-    where
-        fibonacci' :: Int -> (Integer, Integer) -> Integer
-        fibonacci' i (s1,s2)
-          | i == n                      = s1+s2
-          | otherwise                   = fibonacci' (i+1) (s1+s2, s1)
+fibonacci n = (map snd $ iterate (\(a,b) -> (a+b,a)) (1,0)) !! n
 
 sumEvenFibonaccis :: Integer -> Integer
 sumEvenFibonaccis n                     = sum $ filter (even) (fibonacci' (1,1) []) 
@@ -33,3 +29,15 @@ is_prime 2                              = True
 is_prime n 
   | (length [x | x <- [2 .. n-1], mod n x == 0]) > 0 = False
   | otherwise = True
+
+isPalindromic :: Integer -> Bool
+isPalindromic n                         = n1 == n2 
+    where
+        n1                              = take m $ show n
+        n2                              = take m $ reverse $ show n
+        m                               = div (digits n) 2
+
+digits :: Integer -> Int
+digits n
+  | n < 10                              = 1
+  | otherwise                           = 1 + digits (div n 10)
