@@ -20,3 +20,26 @@ selectFirst xs ys zs = [x | x <- xs, (belongs x ys) && ((not $ belongs x zs) || 
 
 myIterate :: (a -> a) -> a -> [a]
 myIterate f n = scanl (\x _ -> f x)  n [1..]
+
+SymTab a = String -> Maybe a
+
+empty :: SymTab a
+empty   = Nothing 
+
+get :: SymTab a -> String -> Maybe a
+get     = ($)
+
+set :: SymTab a -> String -> a -> SymTab 
+set taula clau valor c
+  | clau == c = Just valor
+  | otherwise = taula c
+
+ data Expr a
+     = Val a
+     | Var String
+     | Sum (Expr a) (Expr a)
+     | Sub (Expr a) (Expr a)
+     | Mul (Expr a) (Expr a)
+     deriving Show
+
+eval :: (Num a) => SymTabv a -> Expr a -> Maybe a
