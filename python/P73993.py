@@ -2,7 +2,7 @@ from functools import reduce
 
 
 def evens_product(L):
-    return reduce(lambda x, y: x * y, list(filter(lambda x: x % 2 == 0, L)))
+    return reduce(lambda x, y: x * y, list(filter(lambda x: x % 2 == 0, L)), 1)
 
 
 def reverse(L):
