@@ -33,12 +33,14 @@ def primes():
 
 
 def hammings():
+    def is_hamming(n):
+        if n == 1: return True
+        if n % 2 == 0: return is_hamming(n/2)
+        if n % 3 == 0: return is_hamming(n/3)
+        if n % 5 == 0: return is_hamming(n/5)
+        return False
     res = 1
     yield res
     while True:
         res += 1
-        if res % 2 == 0 or res % 3 == 0 or res % 5 == 0:
-            yield res
-
-g4 = hammings()
-print([next(g4) for n in range(20)])
+        if is_hamming(res): yield res 
