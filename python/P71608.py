@@ -7,7 +7,7 @@ class Tree:
         self.child.append(a)
 
     def root(self):
-        return int(self.rt)
+        return self.rt
 
     def ith_child(self, i):
         return self.child[i]
@@ -19,12 +19,5 @@ class Tree:
 class Pre(Tree):
     def preorder(self):
         def i_preorder(n):
-            return list(reduce(lambda x, y: x + i_preorder(y), n.child, [n.root]))
-        return i_preorder(self) 
-
-t = Pre(2)
-t.add_child(Pre(3))
-t.add_child(Pre(4))
-print(t.num_children())
-t.ith_child(1).add_child(Pre(5))
-print(t.preorder())
+            return reduce(lambda x, y: x + i_preorder(y), n.child, [n.root()])
+        return list(i_preorder(self))

@@ -1,0 +1,12 @@
+P1: PREGUNTA                         
+Quants adults viuen a casa teva?
+R1: RESPOSTA                         
+0: zero ;                            
+1: un ;
+2: dos ;
+3: mes de dos ;
+I1: ITEM                             
+P1 -> R1                             
+E: ENQUESTA
+I1 I2 I3
+END
