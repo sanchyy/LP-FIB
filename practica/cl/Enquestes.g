@@ -8,40 +8,39 @@ opcio : pregunta
     |   alternativa
     ;
 
-pregunta : ID DOS_PUNTS PREGUNTA FRASE INTERROGACIO     ;
-resposta : ID DOS_PUNTS RESPOSTA possible_resposta+     ;
-possible_resposta : ID DOS_PUNTS FRASE PUNT_COMA        ; 
-item : ID DOS_PUNTS ITEM  ID FLETXA ID                  ; 
-alternativa : ID DOS_PUNTS ALTERNATIVA implicacio       ;
-implicacio : L_B canvi COMA canvi R_B                   ;
-canvi : L_P NUM COMA ID R_P                             ; 
-enquesta : ID DOS_PUNTS ENQUESTA ID+                    ;
+pregunta            : PARAULA DOS_PUNTS PREGUNTA PARAULA INTERROGACIO   ;
+resposta            : PARAULA DOS_PUNTS RESPOSTA possible_resposta+     ;
+possible_resposta   : PARAULA DOS_PUNTS PARAULA PUNT_COMA               ; 
+item                : PARAULA DOS_PUNTS ITEM  PARAULA FLETXA PARAULA    ; 
+alternativa         : PARAULA DOS_PUNTS ALTERNATIVA implicacio          ;
+implicacio          : L_B canvi COMA canvi R_B                          ;
+canvi               : L_P PARAULA COMA PARAULA R_P                      ; 
+enquesta            : PARAULA  DOS_PUNTS ENQUESTA PARAULA+              ;
 
 //TOKENS
 
-//SKIPS
-WS: [ \n]+ -> skip                      ;
 
 //PARAULES
-PREGUNTA : 'PREGUNTA'                   ;
-RESPOSTA : 'RESPOSTA'                   ;
-ENQUESTA : 'ENQUESTA'                   ;
-ALTERNATIVA : 'ALTERNATIVA'             ;
-ITEM : 'ITEM'                           ;
-END : 'END'                             ;
+PREGUNTA    : 'PREGUNTA'    ;
+RESPOSTA    : 'RESPOSTA'    ;
+ENQUESTA    : 'ENQUESTA'    ;
+ALTERNATIVA : 'ALTERNATIVA' ;
+ITEM        : 'ITEM'        ;
+END         : 'END'         ;
 
-//REGEX
-FRASE : [a-zA-Z0-9]+                    ;
-ID : [a-zA-Z0-9]+                       ;
-NUM : [0-9]+                            ;
+PARAULA: [a-zA-Z0-9]+ ( ' ' PARAULA)* ;
 
 //SIGNES PUNTUACIO o SIMBOLS
-DOS_PUNTS : ':'                         ;
-INTERROGACIO : '?'                      ;
-FLETXA : '->'                           ;
-L_P : '('                               ;
-R_P : ')'                               ;
-PUNT_COMA : ';'                         ;
-COMA : ','                              ;
-R_B : ']'                               ;
-L_B : '['                               ;
+DOS_PUNTS   : ':'           ;
+INTERROGACIO: '?'           ;
+FLETXA      : '->'          ;
+L_P         : '('           ;
+R_P         : ')'           ;
+PUNT_COMA   : ';'           ;
+COMA        : ','           ;
+R_B         : ']'           ;
+L_B         : '['           ;
+
+//SKIPS
+WS  : [ \n]+  -> skip       ;
+RET : [\r]+ -> skip         ;

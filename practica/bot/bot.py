@@ -18,6 +18,7 @@ class Bot:
         self.token = token
         self.updater = Updater(token=self.token)
         self.dispatcher = updater.dispatcher
+        self.id_enquesta = None
         
     def init_commands(self):
         self.dispatcher.add_handler(CommandHandler('start', self.start))
@@ -42,13 +43,16 @@ class Bot:
         bot.send_message(chat_id=update.message.chat_id, text=msg)
 
     def quiz(self, bot, update):
-        self.id_enquesta = update.message.text[6:] # delete "/start "
-        bot.send_message(chat_id=update.message.chat_id, text=msg_tr)
+        self.id_enquesta = update.message.text[6:]  # remove string: "/quiz "
+        bot.send_message(chat_id=update.message.chat_id, text=msg)
+        # Do some loop waiting for the answer
 
     def bar(self, bot, update):
+        question = update.message.text[5:]  # remove string "/bar " 
         return "uwu"
 
     def pie(self, bot, update):
+        question = update.message.text[5:]  # remove string "/pie "
         return id_pregunta
 
     def report(self, bot, update):
