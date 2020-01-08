@@ -2,6 +2,7 @@ import sys
 from antlr4 import *
 from EnquestesLexer import EnquestesLexer
 from EnquestesParser import EnquestesParser
+from EnquestesVisitor import EnquestesVisitor
 from antlr4.InputStream import InputStream
 
 if len(sys.argv) > 1:
@@ -14,3 +15,4 @@ token_stream = CommonTokenStream(lexer)
 parser = EnquestesParser(token_stream)
 tree = parser.root()
 print(tree.toStringTree(recog=parser))
+visitor = EnquestesVisitor()

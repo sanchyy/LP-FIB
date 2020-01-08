@@ -7,33 +7,37 @@ import sys
 
 def serializedATN():
     with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\24")
-        buf.write("Z\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\23")
+        buf.write("d\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3\2\6\2\30\n\2\r\2\16\2")
         buf.write("\31\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\5\3$\n\3\3\4\3\4\3")
-        buf.write("\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\6\5\60\n\5\r\5\16\5\61")
-        buf.write("\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\b\3")
-        buf.write("\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n")
-        buf.write("\3\n\3\n\3\n\3\13\3\13\3\13\3\13\6\13V\n\13\r\13\16\13")
-        buf.write("W\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\2U\2\27\3\2\2")
-        buf.write("\2\4#\3\2\2\2\6%\3\2\2\2\b+\3\2\2\2\n\63\3\2\2\2\f8\3")
-        buf.write("\2\2\2\16?\3\2\2\2\20D\3\2\2\2\22K\3\2\2\2\24Q\3\2\2\2")
-        buf.write("\26\30\5\4\3\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3\2\2")
-        buf.write("\2\31\32\3\2\2\2\32\33\3\2\2\2\33\34\5\24\13\2\34\35\7")
-        buf.write("\b\2\2\35\36\7\2\2\3\36\3\3\2\2\2\37$\5\6\4\2 $\5\b\5")
-        buf.write("\2!$\5\f\7\2\"$\5\16\b\2#\37\3\2\2\2# \3\2\2\2#!\3\2\2")
-        buf.write("\2#\"\3\2\2\2$\5\3\2\2\2%&\7\t\2\2&\'\7\n\2\2\'(\7\3\2")
-        buf.write("\2()\7\t\2\2)*\7\13\2\2*\7\3\2\2\2+,\7\t\2\2,-\7\n\2\2")
-        buf.write("-/\7\4\2\2.\60\5\n\6\2/.\3\2\2\2\60\61\3\2\2\2\61/\3\2")
-        buf.write("\2\2\61\62\3\2\2\2\62\t\3\2\2\2\63\64\7\t\2\2\64\65\7")
-        buf.write("\n\2\2\65\66\7\t\2\2\66\67\7\17\2\2\67\13\3\2\2\289\7")
-        buf.write("\t\2\29:\7\n\2\2:;\7\7\2\2;<\7\t\2\2<=\7\f\2\2=>\7\t\2")
-        buf.write("\2>\r\3\2\2\2?@\7\t\2\2@A\7\n\2\2AB\7\6\2\2BC\5\20\t\2")
-        buf.write("C\17\3\2\2\2DE\7\t\2\2EF\7\22\2\2FG\5\22\n\2GH\7\20\2")
-        buf.write("\2HI\5\22\n\2IJ\7\21\2\2J\21\3\2\2\2KL\7\r\2\2LM\7\t\2")
-        buf.write("\2MN\7\20\2\2NO\7\t\2\2OP\7\16\2\2P\23\3\2\2\2QR\7\t\2")
-        buf.write("\2RS\7\n\2\2SU\7\5\2\2TV\7\t\2\2UT\3\2\2\2VW\3\2\2\2W")
-        buf.write("U\3\2\2\2WX\3\2\2\2X\25\3\2\2\2\6\31#\61W")
+        buf.write("\4\3\4\7\4*\n\4\f\4\16\4-\13\4\3\4\3\4\3\5\3\5\3\5\3\5")
+        buf.write("\6\5\65\n\5\r\5\16\5\66\3\6\3\6\3\6\7\6<\n\6\f\6\16\6")
+        buf.write("?\13\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b")
+        buf.write("\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3")
+        buf.write("\n\3\n\3\13\3\13\3\13\3\13\6\13`\n\13\r\13\16\13a\3\13")
+        buf.write("\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\2a\2\27\3\2\2\2\4#")
+        buf.write("\3\2\2\2\6%\3\2\2\2\b\60\3\2\2\2\n8\3\2\2\2\fB\3\2\2\2")
+        buf.write("\16I\3\2\2\2\20N\3\2\2\2\22U\3\2\2\2\24[\3\2\2\2\26\30")
+        buf.write("\5\4\3\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3\2\2\2\31")
+        buf.write("\32\3\2\2\2\32\33\3\2\2\2\33\34\5\24\13\2\34\35\7\b\2")
+        buf.write("\2\35\36\7\2\2\3\36\3\3\2\2\2\37$\5\6\4\2 $\5\b\5\2!$")
+        buf.write("\5\f\7\2\"$\5\16\b\2#\37\3\2\2\2# \3\2\2\2#!\3\2\2\2#")
+        buf.write("\"\3\2\2\2$\5\3\2\2\2%&\7\t\2\2&\'\7\n\2\2\'+\7\3\2\2")
+        buf.write("(*\7\t\2\2)(\3\2\2\2*-\3\2\2\2+)\3\2\2\2+,\3\2\2\2,.\3")
+        buf.write("\2\2\2-+\3\2\2\2./\7\13\2\2/\7\3\2\2\2\60\61\7\t\2\2\61")
+        buf.write("\62\7\n\2\2\62\64\7\4\2\2\63\65\5\n\6\2\64\63\3\2\2\2")
+        buf.write("\65\66\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67\t\3\2\2")
+        buf.write("\289\7\t\2\29=\7\n\2\2:<\7\t\2\2;:\3\2\2\2<?\3\2\2\2=")
+        buf.write(";\3\2\2\2=>\3\2\2\2>@\3\2\2\2?=\3\2\2\2@A\7\r\2\2A\13")
+        buf.write("\3\2\2\2BC\7\t\2\2CD\7\n\2\2DE\7\7\2\2EF\7\t\2\2FG\7\f")
+        buf.write("\2\2GH\7\t\2\2H\r\3\2\2\2IJ\7\t\2\2JK\7\n\2\2KL\7\6\2")
+        buf.write("\2LM\5\20\t\2M\17\3\2\2\2NO\7\t\2\2OP\7\22\2\2PQ\5\22")
+        buf.write("\n\2QR\7\20\2\2RS\5\22\n\2ST\7\21\2\2T\21\3\2\2\2UV\7")
+        buf.write("\16\2\2VW\7\t\2\2WX\7\20\2\2XY\7\t\2\2YZ\7\17\2\2Z\23")
+        buf.write("\3\2\2\2[\\\7\t\2\2\\]\7\n\2\2]_\7\5\2\2^`\7\t\2\2_^\3")
+        buf.write("\2\2\2`a\3\2\2\2a_\3\2\2\2ab\3\2\2\2b\25\3\2\2\2\b\31")
+        buf.write("#+\66=a")
         return buf.getvalue()
 
 
@@ -49,12 +53,12 @@ class EnquestesParser ( Parser ):
 
     literalNames = [ "<INVALID>", "'PREGUNTA'", "'RESPOSTA'", "'ENQUESTA'", 
                      "'ALTERNATIVA'", "'ITEM'", "'END'", "<INVALID>", "':'", 
-                     "'?'", "'->'", "'('", "')'", "';'", "','", "']'", "'['" ]
+                     "'?'", "'->'", "';'", "'('", "')'", "','", "']'", "'['" ]
 
     symbolicNames = [ "<INVALID>", "PREGUNTA", "RESPOSTA", "ENQUESTA", "ALTERNATIVA", 
                       "ITEM", "END", "PARAULA", "DOS_PUNTS", "INTERROGACIO", 
-                      "FLETXA", "L_P", "R_P", "PUNT_COMA", "COMA", "R_B", 
-                      "L_B", "WS", "RET" ]
+                      "FLETXA", "PUNT_COMA", "L_P", "R_P", "COMA", "R_B", 
+                      "L_B", "WS" ]
 
     RULE_root = 0
     RULE_opcio = 1
@@ -81,14 +85,13 @@ class EnquestesParser ( Parser ):
     DOS_PUNTS=8
     INTERROGACIO=9
     FLETXA=10
-    L_P=11
-    R_P=12
-    PUNT_COMA=13
+    PUNT_COMA=11
+    L_P=12
+    R_P=13
     COMA=14
     R_B=15
     L_B=16
     WS=17
-    RET=18
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -261,6 +264,7 @@ class EnquestesParser ( Parser ):
 
         localctx = EnquestesParser.PreguntaContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_pregunta)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 35
@@ -269,9 +273,17 @@ class EnquestesParser ( Parser ):
             self.match(EnquestesParser.DOS_PUNTS)
             self.state = 37
             self.match(EnquestesParser.PREGUNTA)
-            self.state = 38
-            self.match(EnquestesParser.PARAULA)
-            self.state = 39
+            self.state = 41
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==EnquestesParser.PARAULA:
+                self.state = 38
+                self.match(EnquestesParser.PARAULA)
+                self.state = 43
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
+            self.state = 44
             self.match(EnquestesParser.INTERROGACIO)
         except RecognitionException as re:
             localctx.exception = re
@@ -315,25 +327,25 @@ class EnquestesParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_resposta)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 41
+            self.state = 46
             self.match(EnquestesParser.PARAULA)
-            self.state = 42
+            self.state = 47
             self.match(EnquestesParser.DOS_PUNTS)
-            self.state = 43
+            self.state = 48
             self.match(EnquestesParser.RESPOSTA)
-            self.state = 45 
+            self.state = 50 
             self._errHandler.sync(self)
             _alt = 1
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt == 1:
-                    self.state = 44
+                    self.state = 49
                     self.possible_resposta()
 
                 else:
                     raise NoViableAltException(self)
-                self.state = 47 
+                self.state = 52 
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -371,15 +383,24 @@ class EnquestesParser ( Parser ):
 
         localctx = EnquestesParser.Possible_respostaContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_possible_resposta)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 49
+            self.state = 54
             self.match(EnquestesParser.PARAULA)
-            self.state = 50
+            self.state = 55
             self.match(EnquestesParser.DOS_PUNTS)
-            self.state = 51
-            self.match(EnquestesParser.PARAULA)
-            self.state = 52
+            self.state = 59
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==EnquestesParser.PARAULA:
+                self.state = 56
+                self.match(EnquestesParser.PARAULA)
+                self.state = 61
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
+            self.state = 62
             self.match(EnquestesParser.PUNT_COMA)
         except RecognitionException as re:
             localctx.exception = re
@@ -422,17 +443,17 @@ class EnquestesParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_item)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 54
+            self.state = 64
             self.match(EnquestesParser.PARAULA)
-            self.state = 55
+            self.state = 65
             self.match(EnquestesParser.DOS_PUNTS)
-            self.state = 56
+            self.state = 66
             self.match(EnquestesParser.ITEM)
-            self.state = 57
+            self.state = 67
             self.match(EnquestesParser.PARAULA)
-            self.state = 58
+            self.state = 68
             self.match(EnquestesParser.FLETXA)
-            self.state = 59
+            self.state = 69
             self.match(EnquestesParser.PARAULA)
         except RecognitionException as re:
             localctx.exception = re
@@ -473,13 +494,13 @@ class EnquestesParser ( Parser ):
         self.enterRule(localctx, 12, self.RULE_alternativa)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 61
+            self.state = 71
             self.match(EnquestesParser.PARAULA)
-            self.state = 62
+            self.state = 72
             self.match(EnquestesParser.DOS_PUNTS)
-            self.state = 63
+            self.state = 73
             self.match(EnquestesParser.ALTERNATIVA)
-            self.state = 64
+            self.state = 74
             self.implicacio()
         except RecognitionException as re:
             localctx.exception = re
@@ -526,17 +547,17 @@ class EnquestesParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_implicacio)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 66
+            self.state = 76
             self.match(EnquestesParser.PARAULA)
-            self.state = 67
+            self.state = 77
             self.match(EnquestesParser.L_B)
-            self.state = 68
+            self.state = 78
             self.canvi()
-            self.state = 69
+            self.state = 79
             self.match(EnquestesParser.COMA)
-            self.state = 70
+            self.state = 80
             self.canvi()
-            self.state = 71
+            self.state = 81
             self.match(EnquestesParser.R_B)
         except RecognitionException as re:
             localctx.exception = re
@@ -579,15 +600,15 @@ class EnquestesParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_canvi)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 73
+            self.state = 83
             self.match(EnquestesParser.L_P)
-            self.state = 74
+            self.state = 84
             self.match(EnquestesParser.PARAULA)
-            self.state = 75
+            self.state = 85
             self.match(EnquestesParser.COMA)
-            self.state = 76
+            self.state = 86
             self.match(EnquestesParser.PARAULA)
-            self.state = 77
+            self.state = 87
             self.match(EnquestesParser.R_P)
         except RecognitionException as re:
             localctx.exception = re
@@ -628,19 +649,19 @@ class EnquestesParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 79
+            self.state = 89
             self.match(EnquestesParser.PARAULA)
-            self.state = 80
+            self.state = 90
             self.match(EnquestesParser.DOS_PUNTS)
-            self.state = 81
+            self.state = 91
             self.match(EnquestesParser.ENQUESTA)
-            self.state = 83 
+            self.state = 93 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 82
+                self.state = 92
                 self.match(EnquestesParser.PARAULA)
-                self.state = 85 
+                self.state = 95 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not (_la==EnquestesParser.PARAULA):
