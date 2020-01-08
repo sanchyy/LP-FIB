@@ -1,23 +1,21 @@
 from config import TOKEN
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
-from utils import Table
 
 class Bot:
-    '''
-    /start: Inicialitzar el bot
-    /help: Desplegarà el menú d'ajuda amb les possibles comandes
-    /author: Es retorna el nom i correu electrònic de l'autor del projecte
-    /quiz id_enquesta: s'iniciarà l'enquesta amb id = id_enquesta
-    /bar id_pregunta: es retornarà mitjançant un gràfic de barres la distribució de les respostes donades
-    /pie id_pregunta: es retorna amb una gràfica tipus formatget amb percentatge de respostes a la pregunta
-    /report es retorna una taula amb el nombre de respostes obtingudes per cada valor de cada pregunta
+    ''' /start: Inicialitzar el bot 
+/help: Desplegarà el menú d'ajuda amb les possibles comandes 
+/author: Es retorna el nom i correu electrònic de l'autor del projecte 
+/quiz id_enquesta: s'iniciarà l'enquesta amb id = id_enquesta 
+/bar id_pregunta: es retornarà mitjançant un gràfic de barres la distribució de les respostes donades 
+/pie id_pregunta: es retorna amb una gràfica tipus formatget amb percentatge de respostes a la pregunta 
+/report es retorna una taula amb el nombre de respostes obtingudes per cada valor de cada pregunta
     '''
 
     def __init__(self, token):
         self.token = token
         self.updater = Updater(token=self.token)
-        self.dispatcher = updater.dispatcher
+        self.dispatcher = self.updater.dispatcher
         self.id_enquesta = None
         
     def init_commands(self):
@@ -36,8 +34,7 @@ class Bot:
         bot.send_message(chat_id=update.message.chat_id, text=self.__doc__)
 
     def author(self, bot, update):
-        msg = '''
-        Autor: Víctor Sánchez Gassull
+        msg = '''Autor: Víctor Sánchez Gassull
         e-mail: victor.sanchez.gassull@est.fib.upc.edu
         '''
         bot.send_message(chat_id=update.message.chat_id, text=msg)
@@ -57,7 +54,10 @@ class Bot:
 
     def report(self, bot, update):
         return "uwu"
+    def start(self):
+        self.updater.start_polling()
 
 if __name__ == '__main__':
     bot = Bot(TOKEN)
     bot.init_commands()
+    bot.start()
