@@ -1,6 +1,7 @@
 from config import TOKEN
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
+import pickle
 
 class Bot:
     ''' /start: Inicialitzar el bot 
@@ -34,15 +35,22 @@ class Bot:
         bot.send_message(chat_id=update.message.chat_id, text=self.__doc__)
 
     def author(self, bot, update):
-        msg = '''Autor: Víctor Sánchez Gassull
+        msg = '''
+    Autor: Víctor Sánchez Gassull
         e-mail: victor.sanchez.gassull@est.fib.upc.edu
         '''
         bot.send_message(chat_id=update.message.chat_id, text=msg)
 
     def quiz(self, bot, update):
         self.id_enquesta = update.message.text[6:]  # remove string: "/quiz "
-        bot.send_message(chat_id=update.message.chat_id, text=msg)
+        try:
+           enquesta = pickle.load( open('../data/{}.dat'.format(self.id_enquesta)) ) 
+        except:
+            bot.send_message(chat_id=update.message.chat_id, text="No hi ha cap enquesta amb aquest id")
+            pass
+
         # Do some loop waiting for the answer
+        
 
     def bar(self, bot, update):
         question = update.message.text[5:]  # remove string "/bar " 

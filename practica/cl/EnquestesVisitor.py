@@ -6,6 +6,8 @@ else:
     from EnquestesParser import EnquestesParser
 
 import networkx as nx
+import matplotlib.pyplot as plt
+import pickle
 
 # This class defines a complete generic visitor for a parse tree produced by EnquestesParser.
 class EnquestesVisitor(ParseTreeVisitor):
@@ -61,6 +63,13 @@ class EnquestesVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by EnquestesParser#alternativa.
     def visitAlternativa(self, ctx:EnquestesParser.AlternativaContext):
+        canvis = ctx.getText().split(":ALTERNATIVA")[1]
+        canvis = canvis.split('[')
+        o_p_id = self.items[canvis[0]] 
+        d_p_id = canvis[1].replace('(', '').replace(')','').replace(']','').split(',')
+        for i in range(0, len(d_p_id), 2):
+            self.G.add_edge(o_p_id, d_p_id[i+1], resp=d_p_id[i])
+        print(d_p_id)
         return self.visitChildren(ctx)
 
 
@@ -80,10 +89,9 @@ class EnquestesVisitor(ParseTreeVisitor):
         e_id = ids[0]
         items_id = list(filter(lambda x: x in self.items, ids[1:]))
         for item in items_id:
-            self.G.add_edges_from([self.items[item]])
-        print(self.primera_pregunta)
+            self.G.add_edges_from([self.items[item]], tipus="ITEM: {}".format(item))
         self.G.add_edge(e_id, self.primera_pregunta)
-        nx.draw(self.G)
+        pickle.dump(self.G, open('../data/{}.dat'.format(e_id),'wb'))
         
         return self.visitChildren(ctx)
 

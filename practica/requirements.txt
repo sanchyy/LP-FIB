@@ -3,3 +3,5 @@ telegram
 nltk
 python-telegram-bot
 matplotlib
+networkx
+pickle
