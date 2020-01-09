@@ -8,7 +8,7 @@ pip install -r requirements.txt
 ```
 
 ## Ús del compilador
-> Per a usar el compilador d'enquestes caldra omplir un _.txt_ seguin el format de les opcions següents: 
+> Per a usar el compilador d'enquestes caldra omplir un _.txt_ seguin el format de les opcions següents:   
 · La pregunta serà una pregunta del qüestionari
 · La resposta serà un conjunt de posslbes respostes
 · L'item, unirà una pregunta amb un conjunt de respostes
