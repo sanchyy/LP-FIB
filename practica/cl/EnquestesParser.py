@@ -127,6 +127,12 @@ class EnquestesParser ( Parser ):
         def getRuleIndex(self):
             return EnquestesParser.RULE_root
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRoot" ):
+                return visitor.visitRoot(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -188,6 +194,12 @@ class EnquestesParser ( Parser ):
 
         def getRuleIndex(self):
             return EnquestesParser.RULE_opcio
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOpcio" ):
+                return visitor.visitOpcio(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -257,6 +269,12 @@ class EnquestesParser ( Parser ):
         def getRuleIndex(self):
             return EnquestesParser.RULE_pregunta
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPregunta" ):
+                return visitor.visitPregunta(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -318,6 +336,12 @@ class EnquestesParser ( Parser ):
         def getRuleIndex(self):
             return EnquestesParser.RULE_resposta
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitResposta" ):
+                return visitor.visitResposta(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -375,6 +399,12 @@ class EnquestesParser ( Parser ):
 
         def getRuleIndex(self):
             return EnquestesParser.RULE_possible_resposta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPossible_resposta" ):
+                return visitor.visitPossible_resposta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -434,6 +464,12 @@ class EnquestesParser ( Parser ):
         def getRuleIndex(self):
             return EnquestesParser.RULE_item
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitItem" ):
+                return visitor.visitItem(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -484,6 +520,12 @@ class EnquestesParser ( Parser ):
 
         def getRuleIndex(self):
             return EnquestesParser.RULE_alternativa
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAlternativa" ):
+                return visitor.visitAlternativa(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -538,6 +580,12 @@ class EnquestesParser ( Parser ):
         def getRuleIndex(self):
             return EnquestesParser.RULE_implicacio
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitImplicacio" ):
+                return visitor.visitImplicacio(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -591,6 +639,12 @@ class EnquestesParser ( Parser ):
         def getRuleIndex(self):
             return EnquestesParser.RULE_canvi
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCanvi" ):
+                return visitor.visitCanvi(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -638,6 +692,12 @@ class EnquestesParser ( Parser ):
 
         def getRuleIndex(self):
             return EnquestesParser.RULE_enquesta
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEnquesta" ):
+                return visitor.visitEnquesta(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 

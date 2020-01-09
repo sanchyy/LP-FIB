@@ -5,12 +5,17 @@ if __name__ is not None and "." in __name__:
 else:
     from EnquestesParser import EnquestesParser
 
-# This class defines a complete generic visitor for a parse tree produced by EnquestesParser.
+import networkx as nx
 
+# This class defines a complete generic visitor for a parse tree produced by EnquestesParser.
 class EnquestesVisitor(ParseTreeVisitor):
+    items = {} 
+    primera_pregunta = None
+    ultima_pregunta = None
 
     def __init__(self):
-        self.nivell = 0
+        self.G = nx.DiGraph()
+
 
     # Visit a parse tree produced by EnquestesParser#root.
     def visitRoot(self, ctx:EnquestesParser.RootContext):
@@ -24,13 +29,20 @@ class EnquestesVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by EnquestesParser#pregunta.
     def visitPregunta(self, ctx:EnquestesParser.PreguntaContext):
-        print(' ' * self.nivell + EnquestesParser.ruleNames[ctx.getRuleIndex()] + ":")        
-        preg = ctx.PREG().getText().replace('\n', '')
+        p_id, preg = ctx.getText().split(':PREGUNTA')
+        self.G.add_node("PREGUNTA:{}:{}".format(p_id, preg))
+        if self.primera_pregunta is None:
+            self.primera_pregunta = p_id
+        else:
+            self.G.add_edge(self.ultima_pregunta, p_id)
+        self.ultima_pregunta = p_id
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by EnquestesParser#resposta.
     def visitResposta(self, ctx:EnquestesParser.RespostaContext):
+        r_id, resp = ctx.getText().split(':RESPOSTA') 
+        self.G.add_node("RESPOSTA:{}:{}".format(r_id, resp))
         return self.visitChildren(ctx)
 
 
@@ -41,6 +53,9 @@ class EnquestesVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by EnquestesParser#item.
     def visitItem(self, ctx:EnquestesParser.ItemContext):
+        i_id, _ = ctx.getText().split(':ITEM')
+        p_id, r_id = _.split('->')
+        self.items[i_id] = (p_id, r_id)
         return self.visitChildren(ctx)
 
 
@@ -61,8 +76,17 @@ class EnquestesVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by EnquestesParser#enquesta.
     def visitEnquesta(self, ctx:EnquestesParser.EnquestaContext):
+        ids = ctx.getText().replace(':ENQUESTA', ' ').split(' ')
+        e_id = ids[0]
+        items_id = list(filter(lambda x: x in self.items, ids[1:]))
+        for item in items_id:
+            self.G.add_edges_from([self.items[item]])
+        print(self.primera_pregunta)
+        self.G.add_edge(e_id, self.primera_pregunta)
+        nx.draw(self.G)
+        
         return self.visitChildren(ctx)
 
 
 
-del EnquestesParser
+# del EnquestesParser

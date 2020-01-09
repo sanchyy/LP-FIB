@@ -1,13 +1,11 @@
 grammar Enquestes;
 
 root                : opcio+ enquesta END EOF                           ;
-
 opcio               : pregunta
                     | resposta
                     | item
                     | alternativa
                                                                         ;
-
 pregunta            : PARAULA DOS_PUNTS PREGUNTA PARAULA* INTERROGACIO  ;
 resposta            : PARAULA DOS_PUNTS RESPOSTA possible_resposta+     ;
 possible_resposta   : PARAULA DOS_PUNTS PARAULA* PUNT_COMA              ; 
@@ -16,7 +14,6 @@ alternativa         : PARAULA DOS_PUNTS ALTERNATIVA implicacio          ;
 implicacio          : PARAULA L_B canvi COMA canvi R_B                  ;
 canvi               : L_P PARAULA COMA PARAULA R_P                      ;   
 enquesta            : PARAULA DOS_PUNTS ENQUESTA PARAULA+               ;
-
 
 //PARAULES
 PREGUNTA            : 'PREGUNTA'                                        ;
