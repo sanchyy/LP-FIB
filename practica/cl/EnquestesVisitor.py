@@ -69,7 +69,6 @@ class EnquestesVisitor(ParseTreeVisitor):
         d_p_id = canvis[1].replace('(', '').replace(')','').replace(']','').split(',')
         for i in range(0, len(d_p_id), 2):
             self.G.add_edge(o_p_id, d_p_id[i+1], resp=d_p_id[i])
-        print(d_p_id)
         return self.visitChildren(ctx)
 
 
