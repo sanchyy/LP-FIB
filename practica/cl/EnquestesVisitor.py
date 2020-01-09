@@ -32,11 +32,11 @@ class EnquestesVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by EnquestesParser#pregunta.
     def visitPregunta(self, ctx:EnquestesParser.PreguntaContext):
         p_id, preg = ctx.getText().split(':PREGUNTA')
-        self.G.add_node("PREGUNTA:{}:{}".format(p_id, preg))
+        self.G.add_node("PREGUNTA", tipus="PREGUNTA", id=p_id, pregunta=preg)
         if self.primera_pregunta is None:
             self.primera_pregunta = p_id
         else:
-            self.G.add_edge(self.ultima_pregunta, p_id)
+            self.G.add_edge(self.ultima_pregunta, p_id, TIPUS="PREGUNTA")
         self.ultima_pregunta = p_id
         return self.visitChildren(ctx)
 
@@ -44,7 +44,7 @@ class EnquestesVisitor(ParseTreeVisitor):
     # Visit a parse tree produced by EnquestesParser#resposta.
     def visitResposta(self, ctx:EnquestesParser.RespostaContext):
         r_id, resp = ctx.getText().split(':RESPOSTA') 
-        self.G.add_node("RESPOSTA:{}:{}".format(r_id, resp))
+        self.G.add_node("RESPOSTA", tipus="RESPOSTA", id=r_id, resposta=resp.split(';'))
         return self.visitChildren(ctx)
 
 
@@ -68,7 +68,7 @@ class EnquestesVisitor(ParseTreeVisitor):
         o_p_id = self.items[canvis[0]] 
         d_p_id = canvis[1].replace('(', '').replace(')','').replace(']','').split(',')
         for i in range(0, len(d_p_id), 2):
-            self.G.add_edge(o_p_id, d_p_id[i+1], resp=d_p_id[i])
+            self.G.add_edge(o_p_id, d_p_id[i+1], tipus="ALTERNATIVA", resp=d_p_id[i].split(';'))
         return self.visitChildren(ctx)
 
 
@@ -88,8 +88,8 @@ class EnquestesVisitor(ParseTreeVisitor):
         e_id = ids[0]
         items_id = list(filter(lambda x: x in self.items, ids[1:]))
         for item in items_id:
-            self.G.add_edges_from([self.items[item]], tipus="ITEM: {}".format(item))
-        self.G.add_edge(e_id, self.primera_pregunta)
+            self.G.add_edges_from([self.items[item]], tipus="ENQUESTA" ,id=item)
+        self.G.add_edge(e_id, self.primera_pregunta, tipus="ENQUESTA" )
         pickle.dump(self.G, open('../data/{}.dat'.format(e_id),'wb'))
         
         return self.visitChildren(ctx)

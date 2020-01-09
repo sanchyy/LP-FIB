@@ -54,10 +54,20 @@ e-mail: victor.sanchez.gassull@est.fib.upc.edu
             return
 
         # Do some loop waiting for the answer
-        print(nx.neighbors(self.id_enquesta))
-        print(self.enquesta)
-        sep = msg.split(':')
-
+        node = self.id_enquesta
+        veins = [v for v in self.enquesta.neighbors(node)]
+        while veins is not []:
+            for n in veins:
+                if self.enquesta[node][n]['tipus'] == 'ENQUESTA':
+                    node = n
+                    msg = self.id_enquesta + '>' + self.enquesta.nodes[n]['pregunta'] + '\n'
+                    veins1 = [v for v in self.enquesta.neighbors(n)] 
+                    for n1 in veins1:
+                        if self.enquesta[node][n1]['tipus'] == 'RESPOSTA':
+                            for resp in self.enquesta[node][n1]['respostes']:
+                                msg += resp + '\n'                     
+            bot.send_message(chat_id=update.message.chat_id, text=msg)
+                        
         # actualitzar puntuacio
         with open('../resultats/{}.json'.format(self.id_enquesta), 'r') as f:
             data = json.load(f.readi())
@@ -65,33 +75,35 @@ e-mail: victor.sanchez.gassull@est.fib.upc.edu
         with open('../resultats/{}.json'.format(self.id_enquesta), 'w') as f:
             json.dump(f, data)
 
-        # op.update_grade(update.message.text)
-        
 
     def bar(self, bot, update):
         question = update.message.text[5:]  # remove string "/bar " 
-        with open('../resultats/{}.json', 'r') as f:
+        with open('../resultats/{}.json'.format(self.id_enquesta), 'r') as f:
             data = json.load(f.readi())
         k, v = data.items() 
         plt.bar(k,v)
         plt.savefig('../static/{}_{}.png'.format(id_enquesta, question))
         bot.send_photo(chat_id=update.message.chat_id, photo=open('../static/{}_{}.png'.format(id_enquesta, question)))
+
 
     def pie(self, bot, update):
         question = update.message.text[5:]  # remove string "/pie "
-        with open('../resultats/{}.json', 'r') as f:
+        with open('../resultats/{}.json'.format(self.id_enquesta), 'r') as f:
             data = json.load(f.readi())
-        k, v = data.items() 
+        k, v = data[question].items() 
         plt.bar(k,v)
         plt.savefig('../static/{}_{}.png'.format(id_enquesta, question))
         bot.send_photo(chat_id=update.message.chat_id, photo=open('../static/{}_{}.png'.format(id_enquesta, question)))
 
+
     def report(self, bot, update):
-        return "uwu"
-    def start(self):
+        bot.send_message(chat_id=update.message.chat_id, text='no implementat')
+
+
+    def init_bot(self):
         self.updater.start_polling()
 
 if __name__ == '__main__':
     bot = Bot(TOKEN)
     bot.init_commands()
-    bot.start()
+    bot.init_bot()

@@ -16,7 +16,7 @@ lexer = EnquestesLexer(input_stream)
 token_stream = CommonTokenStream(lexer)
 parser = EnquestesParser(token_stream)
 tree = parser.root()
-print(tree.toStringTree(recog=parser))
+# print(tree.toStringTree(recog=parser))
 visitor = EnquestesVisitor()
 visitor.visit(tree)
 
